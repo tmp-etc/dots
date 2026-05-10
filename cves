@@ -67,3 +67,8 @@ CVE-2025-47812
 --------------------
 - look for serialization entrypoints
 - and using nullbytes for filters
+
+--------------------
+CVE-2025-32432
+--------------------
+grep for Yii::createObject(...)?
