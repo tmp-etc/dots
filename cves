@@ -2,7 +2,8 @@ header --> ExecCommand
 
 supports a Command Center feature which allows executing OS-level commands via HTTP endpoints.
 
---------------------
+
+
 CVE-2024-50603
 --------------------
 string evaluated as shell command
@@ -11,8 +12,9 @@ grep for:
 	cmdstr variables
 	escapeshellarg() missing on the cmdstr values or even the use of
 	checks like `if ($sid && $sid != "undefined")`, where only the presence of vars is checked
-	
---------------------
+
+
+
 CVE-2024-55591
 --------------------
 grep for:
@@ -20,8 +22,9 @@ grep for:
 	getValidatedSession
 	_getSession
 	... and the like and review the if-else logic
-	
---------------------	
+
+
+
 CVE-2025-0108
 --------------------
 Web request to the management interface is handled by three separate components: Nginx, Apache, and the PHP application itself.
@@ -29,23 +32,27 @@ Web request to the management interface is handled by three separate components:
 Authentication is set at the Nginx level and based on HTTP headers, which we can set almost arbitrarily. Our request is then re-processed again in Apache, which may process the path or
 headers differently to Nginx! Then and only then is the request handed down to PHP.
 
---------------------
+
+
 CVE-2024-48248
 --------------------
 File file = new File(newPath);
 return FileUtils.readFileToByteArray(file);
 
---------------------
+
+
 CVE-2025-24893
 --------------------
 The root cause is unsafe evaluation of Groovy content inside the SolrSearch macro, i.e adding user data to the template and then handing it over to the engine.
 
---------------------
+
+
 CVE-2024-53704
 --------------------
 Whilst parsing cookie strings: There is no else clause after the if statement, so if the loop runs into a null character (NB! this mainly applies to C) in the cookie string, it simply skips validation and jumps to returning the session ID. Assuming that it was possible to input null bytes in a base64-encoded cookie, we were confident that we had found the authentication bypass!
 
---------------------
+
+
 CVE-2025-24016
 --------------------
 grep for eval. and trace from there
@@ -54,7 +61,8 @@ tho:
 The Wazuh server API must be accessible to the attacker, typically over the internet. This is a setup we strongly discourage.
 The attacker must have valid administrator-level API credentials, typically obtained by credential theft, default passwords, or poor security practices.
 
---------------------
+
+
 CVE-2025-1661
 --------------------
 $template = $this->options['template'];
@@ -62,18 +70,21 @@ $path = $this->get_ext_path() . "views/templates/{$template}.php"; //templates i
 
 so user input from http requests get just concated/interpolated to form the path
 
---------------------
+
+
 CVE-2025-47812
 --------------------
 - look for serialization entrypoints
 - and using nullbytes for filters
 
---------------------
+
+
 CVE-2025-32432
 --------------------
 grep for Yii::createObject(...)?
 
---------------------
+
+
 CVE-2025-29927
 --------------------
 grep for funny custom headers x-middleware-subrequest and other x-somethingsomething
