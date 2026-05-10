@@ -72,3 +72,8 @@ CVE-2025-47812
 CVE-2025-32432
 --------------------
 grep for Yii::createObject(...)?
+
+--------------------
+CVE-2025-29927
+--------------------
+grep for funny custom headers x-middleware-subrequest and other x-somethingsomething
