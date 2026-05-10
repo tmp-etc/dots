@@ -81,7 +81,7 @@ CVE-2025-47812
 
 CVE-2025-32432
 --------------------
-grep for Yii::createObject(...)?
+grep for something that `extends \yii\base\Model` and allows user input to flow into it
 
 
 
