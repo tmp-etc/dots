@@ -83,6 +83,10 @@ CVE-2025-32432
 --------------------
 grep for something that `extends \yii\base\Model` and allows user input to flow into it
 
+cuz that has some weird behaviour
+
+"So to summarise, using the as x syntax, we’re able to attach a behavior (aka a mixin) to a Component."
+
 
 
 CVE-2025-29927
