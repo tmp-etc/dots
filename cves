@@ -87,6 +87,8 @@ cuz that has some weird behaviour
 
 "So to summarise, using the as x syntax, we’re able to attach a behavior (aka a mixin) to a Component."
 
+and also just Yii's stuff and ask LLM's to give you the sinks yadayada
+
 
 
 CVE-2025-29927
