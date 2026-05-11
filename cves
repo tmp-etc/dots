@@ -94,3 +94,9 @@ and also just Yii's stuff and ask LLM's to give you the sinks yadayada
 CVE-2025-29927
 --------------------
 grep for funny custom headers x-middleware-subrequest and other x-somethingsomething
+
+
+
+CVE-2024-46506
+--------------------
+misuse of legit behavior; endpoint for that was in a js file and i guess assumed not to be directly poked by a user. i guess grep -i for `cmd` and go from there
