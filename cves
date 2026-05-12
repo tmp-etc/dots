@@ -100,3 +100,17 @@ grep for funny custom headers x-middleware-subrequest and other x-somethingsomet
 CVE-2024-46506
 --------------------
 misuse of legit behavior; endpoint for that was in a js file and i guess assumed not to be directly poked by a user. i guess grep -i for `cmd` and go from there
+
+
+
+CVE-2025-4427
+--------------------
+- A request hits the controller with an attacker-controlled format parameter.
+- Spring MVC binds query parameters to DeviceFeatureUsageReportQueryRequest
+- @Valid triggers DeviceFeatureUsageReportQueryRequestValidator.isValid().
+- The validator calls localizedMessageBuilder, inserting the untrusted format value into a message template.
+- The template is parsed by the EL engine; any ${…} expression is evaluated immediately. 
+- Only after validation finishes does MethodSecurityInterceptor execute the @PreAuthorize check which is obviously too late.
+- Result: arbitrary code runs in the application context, no credentials required.
+
+so user input gets put in a 'error' template and this one gets put through a templating engine without sanitization
