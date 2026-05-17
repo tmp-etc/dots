@@ -114,3 +114,7 @@ CVE-2025-4427
 - Result: arbitrary code runs in the application context, no credentials required.
 
 so user input gets put in a 'error' template and this one gets put through a templating engine without sanitization
+
+
+CVE-2025-1974
+--------------------
