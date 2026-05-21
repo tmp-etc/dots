@@ -118,3 +118,9 @@ so user input gets put in a 'error' template and this one gets put through a tem
 
 CVE-2025-1974
 --------------------
+
+
+
+CVE-2025-47916
+--------------------
+"This method passes the value of the content parameter to the Theme::makeProcessFunction() method; hence it is evaluated by the template engine. " -- sooo... trace functions that invoke a template engine and then trace input to those functions
