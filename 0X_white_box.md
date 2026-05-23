@@ -45,7 +45,7 @@ If the app limits classes it is willing to deserialize or is deserializing an it
 	- the filename is <u>not</u> sanitized with something like `basename`
 	- the filename is <u>not</u> sanitized by removing some characters
 	- the filename is <u>not</u> an app generate temporary file
-    - the file data is <u>not</u> validate or specical characters stripped before writing to file (as was the case with CVE-2025-1302 where sessions are stored in plaintext file as key-value pairs; and appending newline characters to a value enabled to insert new keys)
+    - the file data is <u>not</u> validate or specical characters stripped before writing to file (as was the case with CVE-2026-41940 where sessions are stored in plaintext file as key-value pairs; and appending newline characters to a value enabled to insert new keys)
 
 ***Exploiting***
 
