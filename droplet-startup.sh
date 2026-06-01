@@ -64,3 +64,11 @@ vim.api.nvim_create_autocmd("VimEnter", {
 vim.keymap.set("n", "<C-n>", ":NvimTreeToggle<CR>")
 vim.opt.wrap = false
 EOF
+
+# --- keymaps for nvim ---
+## Ctrl+n - toggle
+## Ctrl+v - vsplit
+## f - filter
+## F - clear filter
+## E - expand all
+## W - collapse all
