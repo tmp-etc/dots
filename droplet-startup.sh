@@ -62,4 +62,6 @@ vim.api.nvim_create_autocmd("VimEnter", {
 })
 
 vim.keymap.set("n", "<C-n>", ":NvimTreeToggle<CR>")
+vim.opt.wrap = true
+vim.opt.linebreak = true
 EOF
