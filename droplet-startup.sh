@@ -65,6 +65,8 @@ vim.keymap.set("n", "<C-n>", ":NvimTreeToggle<CR>")
 vim.opt.wrap = false
 EOF
 
+echo "alias vim='nvim'" >> /home/aaa/.bashrc
+
 # --- keymaps for nvim ---
 ## Ctrl+n - toggle
 ## Ctrl+v - vsplit
