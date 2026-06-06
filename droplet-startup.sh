@@ -27,6 +27,10 @@ sudo apt update
 apt-get install -y ranger caca-utils highlight atool w3m poppler-utils mediainfo bat fzf rg docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 # UX shite
 useradd aaa
+while [ ! -d /home/aaa ]
+do
+    sleep 1
+done
 echo "alias xforce='mkdir blabla && tar -x -C blabla -f'" >> /home/aaa/.bashrc
 echo "export EDITOR=nvim" >> /home/aaa/.bashrc
 su -c "ranger --copy-config=all" aaa
