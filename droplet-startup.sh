@@ -46,7 +46,7 @@ vim.pack.add({
   { src = "https://github.com/junegunn/fzf" },
   { src = "https://github.com/junegunn/fzf.vim" }
 })
-bacula-console-qt
+
 -- disable netrw at the very start of your init.lua
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
