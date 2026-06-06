@@ -57,16 +57,16 @@ local config = {
 }
 require("nvim-tree").setup(config)
 
-vim.api.nvim_create_autocmd("VimEnter", {
-  callback = function() require("nvim-tree.api").tree.open() end,
-})
+--vim.api.nvim_create_autocmd("VimEnter", {
+--  callback = function() require("nvim-tree.api").tree.open() end,
+--})
 
 vim.keymap.set("n", "<C-n>", ":NvimTreeToggle<CR>")
 vim.opt.wrap = false
 EOF
 
 echo "alias vim='nvim'" >> /home/aaa/.bashrc
-
+echo "alias fzf=\"fzf --bind 'enter:become(nvim {})'\"" >> /home/aaa/.bashrc
 # --- keymaps for nvim ---
 ## Ctrl+n - toggle
 ## Ctrl+v - vsplit
