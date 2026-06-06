@@ -69,8 +69,9 @@ EOF
 
 echo "alias vim='nvim'" >> /home/aaa/.bashrc
 # --- keymaps for nvim ---
-## Ctrl+n - toggle
+## Ctrl+n - toggle file explorer
 ## Ctrl+v - vsplit
+## Ctrl+6 - previous buffer/file
 ## f - filter
 ## F - clear filter
 ## E - expand all
