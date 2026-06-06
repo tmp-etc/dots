@@ -2,11 +2,12 @@
 
 MYIP='1.1.1.1'
 
-ufw enable
+ufw --force reset
 ufw allow from $MYIP to any port 22 proto tcp
+ufw enable
 apt-get update 
 apt-get install -y ranger caca-utils highlight atool w3m poppler-utils mediainfo bat fzf rg
-adduser aaa
+useradd aaa
 echo "alias xforce='mkdir blabla && tar -x -C blabla -f'" >> /home/aaa/.bashrc
 echo "export EDITOR=nvim" >> /home/aaa/.bashrc
 su -c "ranger --copy-config=all" aaa
