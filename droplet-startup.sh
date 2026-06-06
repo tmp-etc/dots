@@ -40,7 +40,7 @@ sudo rm -rf /opt/nvim-linux-x86_64
 sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
 echo 'export PATH="$PATH:/opt/nvim-linux-x86_64/bin"' >> /home/aaa/.bashrc
 mkdir /home/aaa/.config/nvim
-cat > ~/.config/nvim/init.lua << 'EOF'
+cat > /home/aaa/.config/nvim/init.lua << 'EOF'
 vim.pack.add({
   { src = 'https://github.com/nvim-tree/nvim-tree.lua' },
   { src = "https://github.com/junegunn/fzf" },
