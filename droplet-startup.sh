@@ -26,7 +26,7 @@ EOF
 sudo apt update
 apt-get install -y ranger caca-utils highlight atool w3m poppler-utils mediainfo bat fzf ripgrep docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 # UX shite
-adduser -gecos GECOS aaa
+adduser --gecos GECOS --disabled-password aaa
 while [ ! -d /home/aaa ]
 do
     sleep 1
