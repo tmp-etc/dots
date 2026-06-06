@@ -5,7 +5,7 @@ MYIP='1.1.1.1'
 ufw enable
 ufw allow from $MYIP to any port 22 proto tcp
 apt-get update 
-apt-get install -y ranger caca-utils highlight atool w3m poppler-utils mediainfo
+apt-get install -y ranger caca-utils highlight atool w3m poppler-utils mediainfo bat fzf rg
 adduser aaa
 echo "alias xforce='mkdir blabla && tar -x -C blabla -f'" >> /home/aaa/.bashrc
 echo "export EDITOR=nvim" >> /home/aaa/.bashrc
@@ -19,8 +19,10 @@ mkdir /home/aaa/.config/nvim
 cat > ~/.config/nvim/init.lua << 'EOF'
 vim.pack.add({
   { src = 'https://github.com/nvim-tree/nvim-tree.lua' },
+  { src = "https://github.com/junegunn/fzf" },
+  { src = "https://github.com/junegunn/fzf.vim" }
 })
-
+bacula-console-qt
 -- disable netrw at the very start of your init.lua
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
@@ -66,7 +68,6 @@ vim.opt.wrap = false
 EOF
 
 echo "alias vim='nvim'" >> /home/aaa/.bashrc
-echo "alias f=\"fzf --bind 'enter:become(nvim {})'\"" >> /home/aaa/.bashrc
 # --- keymaps for nvim ---
 ## Ctrl+n - toggle
 ## Ctrl+v - vsplit
