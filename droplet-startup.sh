@@ -35,7 +35,7 @@ echo "alias xforce='mkdir blabla && tar -x -C blabla -f'" >> /home/aaa/.bashrc
 echo "export EDITOR=nvim" >> /home/aaa/.bashrc
 su -c "ranger --copy-config=all" aaa
 sed -i -e 's/^set viewmode miller/set viewmode multipane/g' /home/aaa/.config/ranger/rc.conf
-curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
+curl -sLO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
 sudo rm -rf /opt/nvim-linux-x86_64
 sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
 echo 'export PATH="$PATH:/opt/nvim-linux-x86_64/bin"' >> /home/aaa/.bashrc
