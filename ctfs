@@ -1,0 +1,18 @@
+dc2026web
+----------
+
+In JS...
+- "Every object's prototype chain terminates at null, and for almost all objects it passes through Object.prototype on the way there"
+- "If you can set properties for the Object.prototype, you can influence what every object returns when asked for a property it doesn't already own"
+
+navTree = {}
+...
+navTree[superCategory] ??= {};
+navTree[superCategory][subCategory] = [];
+
+... and this exactly seems to be the case here. 
+
+And it helps with the "double every single quote" filter that the app has, i.e it allows you to modify the pg connector library so that \' is interpreted as an escaped symbol, thus now there are odd number of single quotes and the string context is escaped.
+
+Refs:
+- https://github.com/bhavya32/web-writeups/blob/main/defcon.md
