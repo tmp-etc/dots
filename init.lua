@@ -1,7 +1,8 @@
 vim.pack.add({
   { src = 'https://github.com/nvim-tree/nvim-tree.lua' },
   { src = "https://github.com/junegunn/fzf" },
-  { src = "https://github.com/junegunn/fzf.vim" }
+  { src = "https://github.com/junegunn/fzf.vim" },
+  { src = "https://github.com/catppuccin/nvim", name = "catppuccin" }
 })
 
 -- disable netrw at the very start of your init.lua
@@ -42,3 +43,6 @@ require("nvim-tree").setup(config)
 
 vim.keymap.set("n", "<C-n>", ":NvimTreeToggle<CR>")
 vim.opt.wrap = false
+
+-- pretty colors
+vim.cmd.colorscheme "catppuccin-nvim"
