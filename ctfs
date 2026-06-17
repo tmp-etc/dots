@@ -29,3 +29,46 @@ As for "logicless" templating engines:
 
 Refs:
 - https://github.com/bhavya32/web-writeups/blob/main/defcon.md
+
+0ctf_0pages
+-----------
+shady code:
+
+    let sites = list_sites(username).await?;
+    if !sites
+        .iter()
+        .any(|site| site.site_id.as_deref() == Some(site_id))
+    {
+        return Err(std::io::Error::new(
+            std::io::ErrorKind::NotFound,
+            "Site not found.",
+        ));
+    }
+    let site_path = format!("data/{}", site_id);
+    let archive_path = format!("/tmp/{}.zip", uuid::Uuid::new_v4().to_string());
+    let cmd = format!(
+        "cd \"{}\" && zip -r -o \"{}\" *",
+        std::path::absolute(&site_path)?.to_string_lossy(),
+        std::path::absolute(&archive_path)?.to_string_lossy(),
+    );
+    let _ = std::process::Command::new("sh")
+        .arg("-c")
+        .arg(cmd)
+        .output()?;
+    Ok(std::path::PathBuf::from(archive_path))
+}
+
+zip slip to inject dotdotslash+foldername as a command string:
+
+        if file.is_file() {
+            if let Some(p) = outpath.parent() { <-- no sanitization done on the parent
+                if !p.exists() {
+                    std::fs::create_dir_all(p)?; <-- create_dir_all follows up on path traversal, so we can inject a few directory that can be used in the extract function to concat to the exsisting shell command
+                }
+            }
+            let mut outfile = std::fs::File::create(&outpath)?;
+            let mut perms = outfile.metadata()?.permissions();
+            perms.set_mode(0o777);
+            outfile.set_permissions(perms)?;
+            std::io::copy(&mut file, &mut outfile)?;
+        }
