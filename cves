@@ -1,7 +1,36 @@
-header --> ExecCommand
+====================
+|| 2026           ||
+====================
 
-supports a Command Center feature which allows executing OS-level commands via HTTP endpoints.
+CVE-2026-24061
+--------------------
+user provided var gets to be part of a cmd string
 
+  cmd = expand_line (login_invocation);
+  if (!cmd)
+    fatal (net, "can't expand login command line");
+  argcv_get (cmd, "", &argc, &argv); --> Split the command string into argc / argv
+
+  execv (argv[0], argv); --> Replace the current process with the login program
+  syslog (LOG_ERR, "%s: %m\n", cmd);
+  fatalperror (net, cmd);
+
+look for places in the source code where the program is launching external binaries
+
+
+
+
+
+
+
+
+
+
+
+
+====================
+|| 2025           ||
+====================
 
 
 CVE-2024-50603
