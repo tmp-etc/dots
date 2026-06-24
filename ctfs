@@ -72,3 +72,23 @@ zip slip to inject dotdotslash+foldername as a command string:
             outfile.set_permissions(perms)?;
             std::io::copy(&mut file, &mut outfile)?;
         }
+
+
+0ctf_ezupload
+--------------
+bypasses for uploading a webshell
+exploiting CVE-2026-27590:
+basically a disagreement between two functions about where the extension starts:
+
+> `splitPos()` finds where `.php` is in the **lowercased** path, but uses that byte index to slice the **original** path. This only works if lowercasing preserves byte length — which it doesn't for many Unicode characters.
+> `İ` (U+0130, 2 bytes `C4 B0`) lowercases to plain `i` (1 byte `69`) in Go's `strings.ToLower` — lowercase gets **shorter**, so the index lands too far left.
+> The math:
+>
+> 1. Lowercased path is `/iiii.txt.php` (13 bytes). `.php` starts at index 9, so `splitPos = 9 + 4 = 13`.
+> 2. But the original path is 17 bytes because each `İ` is 2 bytes instead of 1. The byte at offset 13 of the **original** is at the end of `.txt`, not after `.php`.
+> 3. So `path[:13]` is `/İİİİ.txt` — and that becomes `SCRIPT_FILENAME`.
+> 4. The `.php` extension gets shunted into `PATH_INFO`, which PHP ignores for execution.
+
+so caddy sees a php file requested, pipes it to the php handler and evetually due to the difference in the indices another file gets parsed and executed as a php file.
+
+plus some disable_functions bypass for code exec
