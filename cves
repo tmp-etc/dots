@@ -18,6 +18,11 @@ user provided var gets to be part of a cmd string
 look for places in the source code where the program is launching external binaries
 
 
+CVE-2026-41940
+--------------------
+basically a crlf injection into a file containing key-value pairs... soo keep an eye out on every file write, i guess
+
+
 
 
 
