@@ -20,7 +20,7 @@ look for places in the source code where the program is launching external binar
 
 CVE-2026-41940
 --------------------
-basically a crlf injection into a file containing key-value pairs... soo keep an eye out on every file write, i guess
+basically a crlf injection into a file containing key-value pairs... soo keep an eye out on every file write, i guess... and on session storage!
 
 
 
