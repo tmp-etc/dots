@@ -92,3 +92,19 @@ basically a disagreement between two functions about where the extension starts:
 so caddy sees a php file requested, pipes it to the php handler and evetually due to the difference in the indices another file gets parsed and executed as a php file.
 
 plus some disable_functions bypass for code exec
+
+hitcon_2025_imgc0nv
+--------------------
+https://blog.splitline.tw/hitcon-ctf-2025-authors-write-up/#web-imgc0nv
+
+path traversal write - missed it, focused on pillow and zipfile potential sinks
+
+shady part:
+def safe_filename(filename):
+    filneame = filename.replace("/", "_").replace("..", "_")
+    return filename
+
+so the typo (filneame) makes this filter useless.
+also some extension bypasses (only first extension gets replaced)
+
+code exec seems interesting too: writing to fd files that get deserialized (pickle)
