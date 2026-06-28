@@ -7,27 +7,10 @@ https://pentesterlab.com/blog/how-to-start-reviewing-code
 
 ---
 
-
-# 🦊 GENERAL PROCESS FOR INJECTIONS
-
-- Check out the README, think of the threat model or something
-- Find starting points
-	- Scan the source code with my custom semgrep rules, looking for sinks
-	- Use Claude to find entrypoints
-	- Browse the repo structure, search for keywords
-- Prioritize
-- Follow up on the sinks in an IDE, using the dataflow analysis, call hierarchy and other search functionalities to trace the sink to source (or at least to a point that renders exploitation unlikely)
-- Check integrations
-- Check out the dependencies
-- Rinse and repeat the process for the dependencies/libraries
-- Check out CI/CD and other development line vulns
-
----
-
 # 🦊 INSECURE DESERIALIZATION
 
 ***Look for***
-- deserialization of data (strings, 'binary' etc) you can provide
+- deserialization of data you can provide
 - custom serialization implementations where the serialized value is created through concatenation (see CVE-2025-49113); could be named something like `objectmanager` (as in Magento)
 
 ***Exploiting***
@@ -75,9 +58,9 @@ Like `import`, `require` in PHP. Basically can you make the app take your code a
 
 TBA!
 
-# 🦊 CODE / COMMAND INJECTION
+# 🦊 CALLING EXTERNAL CODE / BINARIES
 
-You may only be able to manipulate the input of the eval function <u>indirectly</u>! For instance, CVE-2025-60787.
+You may only be able to manipulate the input <u>indirectly</u>! For instance, CVE-2025-60787.
 
 The `motion` binary is called in `motioneye/motionctl.py` the following way:
 
@@ -103,9 +86,7 @@ You cannot manipulate the values of `args`, but digging into the `motion` binary
 
 So, <u>**DIG INTO THE BINARY CALLED AS WELL!**</u> and check for indirect input opportunities!
 
-# 🦊 CODE EVALUATION
-
-TBA!
+Yeah and also check if the input provided to the external executable can eval your code and interact with the OS
 
 # 🦊 AUTHN/Z BYPASSES
 
