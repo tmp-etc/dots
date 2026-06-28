@@ -108,3 +108,9 @@ so the typo (filneame) makes this filter useless.
 also some extension bypasses (only first extension gets replaced)
 
 code exec seems interesting too: writing to fd files that get deserialized (pickle)
+
+hitcon_2025_verilog_oj
+-----------------------
+well, basically you can provide code that gets evaluated by some verilog program. this also enables file writes to the os
+
+
