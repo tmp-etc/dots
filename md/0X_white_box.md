@@ -53,7 +53,9 @@ Keep in mind that you may not be able to manipulate the arguments of the executa
 
 Especially when there are 'legit' functionalities that enable code execution, uploading webshells etc.
 
-# ARBITRARY FILE READ
+# ARBITRARY DATA READ
+
+Be it reading files or from a database etc etc.
 
 Check if the file is returned to you in some shape or form.
 
