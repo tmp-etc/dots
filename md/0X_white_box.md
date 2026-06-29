@@ -28,21 +28,20 @@ This could range from classic webshells to messing with session data like CVE-20
 
 # SSTI
 
-***Look for***
-- use of a <u>non</u> "logic-less" template engine, such as Mustache
-- string interpolation / replacement used instead of the template engine? I.e the parameter gets replaced and then the template is passed to the template engine.
-- user input ending up in an in-template func that's RCE-ish
-- functionality to pass in arbitrary templates
-	- as strings
-	- from file upload
+Your input ends up
+- in a logical (or logicful?) template engine, such as Mustache
+- in some sort of string interpolation / replacement that's used to construct the template before handing it over to the templating engine
+- in an in-template func that's RCE-ish
+- as the whole template to be templated (lol), either via string or file upload
 
-
-# RFI
+# REMOTE FILE INCLUSION
 Like `import`, `require` in PHP. Basically can you make the app take your code and include it in theirs.
 
 # SUPPLY CHAIN / CICD ATTACKS
 
-TBA!
+Lore ipsum
+...
+...
 
 # DATA EVALUATED AS CODE
 
