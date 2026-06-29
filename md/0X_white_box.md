@@ -9,14 +9,12 @@ https://pentesterlab.com/blog/how-to-start-reviewing-code
 
 # 🦊 INSECURE DESERIALIZATION
 
-***Look for***
-- deserialization of data you can provide
-- custom serialization implementations where the serialized value is created through concatenation (see CVE-2025-49113); could be named something like `objectmanager` (as in Magento)
-
-***Exploiting***
+- You provide the serialized data/string, app deserializes it
+- Your input end in some sort of custom serialization implementations where the serialized value is created through concatenation (see CVE-2025-49113)
+    - could be named something like `objectmanager` (as in Magento)
 
 If the app limits classes it is willing to deserialize or is deserializing an item it previously serialized itself...
-- Check if the class (or any allowed classes) have known-exploitable magic methods, i.e a property is used 'dangerously' inside the magic method, like `$this->$foo->something()` or `something_dangerous($this->$foo)`
+- Check if the class (or any allowed classes) have known-exploitable magic methods, i.e a property (that you control) is used 'dangerously' inside the magic method, like `$this->$foo->something()` or `something_dangerous($this->$foo)` ... sounds stupid but hey
 
 
 # 🦊 ARBITRARY FILE WRITE
