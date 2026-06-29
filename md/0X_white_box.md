@@ -44,40 +44,15 @@ Like `import`, `require` in PHP. Basically can you make the app take your code a
 
 TBA!
 
-# CALLING EXTERNAL CODE / BINARIES
+# DATA EVALUATED AS CODE
 
-You may only be able to manipulate the input <u>indirectly</u>! For instance, CVE-2025-60787.
+Be it calling executables from the underlying OS or pushing a string to a code engine to be evaluated as code.
 
-The `motion` binary is called in `motioneye/motionctl.py` the following way:
-
-```python
-def start(deferred=False):
-	# ...
-    motion_cfg_path = os.path.join(settings.CONF_PATH, 'motion.conf')
-    motion_log_path = os.path.join(settings.LOG_PATH, 'motion.log')
-    motion_pid_path = os.path.join(settings.RUN_PATH, 'motion.pid')
-
-    args = [binary, '-n', '-c', motion_cfg_path, '-d']
-    # ...
-    process = subprocess.Popen(
-        args, 
-        stdout=log_file, 
-        stderr=log_file, 
-        close_fds=True, 
-        cwd=settings.CONF_PATH
-    )
-```
-
-You cannot manipulate the values of `args`, but digging into the `motion` binary you eventually find that the program calls `execl()` with values defined in the `motion_cfg_path` config file (see [this](https://github.com/Motion-Project/motion/blob/master/src/picture.cpp#L73)).
-
-So, <u>**DIG INTO THE BINARY CALLED AS WELL!**</u> and check for indirect input opportunities!
-
-Yeah and also check if the input provided to the external executable can eval your code and interact with the OS
+Keep in mind that you may not be able to manipulate the arguments of the executable, but you still could have some other input opportunities (like commands to a file that the executable will parse and execute, see CVE-2025-60787).
 
 # AUTHN/Z BYPASSES
 
 Especially when there are 'legit' functionalities that enable code execution, uploading webshells etc.
-
 
 # ARBITRARY FILE READ
 
