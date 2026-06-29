@@ -7,7 +7,7 @@ https://pentesterlab.com/blog/how-to-start-reviewing-code
 
 ---
 
-# 🦊 INSECURE DESERIALIZATION
+# INSECURE DESERIALIZATION
 
 - You provide the serialized data/string, app deserializes it
 - Your input end in some sort of custom serialization implementations where the serialized value is created through concatenation (see CVE-2025-49113)
@@ -17,28 +17,16 @@ If the app limits classes it is willing to deserialize or is deserializing an it
 - Check if the class (or any allowed classes) have known-exploitable magic methods, i.e a property (that you control) is used 'dangerously' inside the magic method, like `$this->$foo->something()` or `something_dangerous($this->$foo)` ... sounds stupid but hey
 
 
-# 🦊 ARBITRARY FILE WRITE
+# ARBITRARY FILE WRITE / FILE UPLOAD
 
-***Look for***
-- File write operations where
-	- the filename is <u>not</u> hardcoded or a constant
-	- a hardcoded string is <u>not</u> appended to the user provided value
-	- the filename is <u>not</u> sanitized with something like `basename`
-	- the filename is <u>not</u> sanitized by removing some characters
-	- the filename is <u>not</u> an app generate temporary file
-    - the file data is <u>not</u> validate or specical characters stripped before writing to file (as was the case with CVE-2026-41940 where sessions are stored in plaintext file as key-value pairs; and appending newline characters to a value enabled to insert new keys)
+- The file gets turned into a file in underlying filesystem (I guess cloud storage like buckets handle this differently)
+- You control the (part of the) filepath and the file content
+- You are able to bypass sanitization of the filepath and content
+- You find a path from which this file gets handled like an executable
 
-***Exploiting***
+This could range from classic webshells to messing with session data like CVE-2026-41940 where sessions are stored in plaintext file as key-value pairs and appending newline characters to a value enabled to insert new keys
 
-> [!note] In Laravel
-> Unprintable and invalid unicode characters will automatically be removed from file paths. Therefore, you may wish to sanitize your file paths before passing them to Laravel's file storage methods. File paths are normalized using the `League\Flysystem\WhitespacePathNormalizer::normalizePath` method.
-
-> [!note] Uploading files?
-> Like, does this differ from just file writes to local disk?
-
-
-
-# 🦊 SSTI
+# SSTI
 
 ***Look for***
 - use of a <u>non</u> "logic-less" template engine, such as Mustache
@@ -49,14 +37,14 @@ If the app limits classes it is willing to deserialize or is deserializing an it
 	- from file upload
 
 
-# 🦊 RFI
+# RFI
 Like `import`, `require` in PHP. Basically can you make the app take your code and include it in theirs.
 
-# 🦊 SUPPLY CHAIN / CICD ATTACKS
+# SUPPLY CHAIN / CICD ATTACKS
 
 TBA!
 
-# 🦊 CALLING EXTERNAL CODE / BINARIES
+# CALLING EXTERNAL CODE / BINARIES
 
 You may only be able to manipulate the input <u>indirectly</u>! For instance, CVE-2025-60787.
 
@@ -86,16 +74,16 @@ So, <u>**DIG INTO THE BINARY CALLED AS WELL!**</u> and check for indirect input 
 
 Yeah and also check if the input provided to the external executable can eval your code and interact with the OS
 
-# 🦊 AUTHN/Z BYPASSES
+# AUTHN/Z BYPASSES
 
 Especially when there are 'legit' functionalities that enable code execution, uploading webshells etc.
 
 
-# 🦊 ARBITRARY FILE READ
+# ARBITRARY FILE READ
 
 Check if the file is returned to you in some shape or form.
 
-# 🦊 SSRF
+# SSRF
 
 TBA, prolly only if you can hit some internal endpoint that enabled code exec etc...
 
