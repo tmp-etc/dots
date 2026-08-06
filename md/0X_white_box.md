@@ -26,6 +26,8 @@ If the app limits classes it is willing to deserialize or is deserializing an it
 
 This could range from classic webshells to messing with session data like CVE-2026-41940 where sessions are stored in plaintext file as key-value pairs and appending newline characters to a value enabled to insert new keys
 
+Could also write bytecode to an open file descriptor file or something
+
 # SSTI
 
 Your input ends up
