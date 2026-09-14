@@ -1,7 +1,7 @@
 ## Inconsistencies in handling alternate syntax - filter vs sink [^4]
 1. encoding (parts of) the input, i.e percent encoding etc; also using double and/or overlong encoding
 2. ascii / unicode escape syntax [^2] 
-> [!note]
+
 > When you send data as a JSON HTTP request body, the JSON parser will process the escape sequences according to JSON specification before PHP (or whatever else) ever sees the data.
 > 
 > So you have to <u>**use**</u> (in this case) <u>**the JSON specific escape syntax**</u>. Once the JSON is parsed, PHP will have the actual Unicode character in its internal string representation. <u>**PHP's `\u{xxxx}` (or any other) syntax is only relevant when you're writing PHP source code directly**</u>, not when receiving JSON data.
