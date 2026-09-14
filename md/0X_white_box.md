@@ -11,7 +11,7 @@ If the app limits classes it is willing to deserialize or is deserializing an it
 # ARBITRARY FILE WRITE / FILE UPLOAD
 
 - The file gets turned into a file in underlying filesystem (I guess cloud storage like buckets handle this differently)
-- You control the (part of the) filepath and the file content
+- You control (part of) the filepath and the file content
 - You are able to bypass sanitization of the filepath and content
 - You find a path from which this file gets handled like an executable
 
