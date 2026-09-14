@@ -18,7 +18,7 @@
 	
 2. unicode normalization (including emojis?)
 3. unicode trunc / overflow -- https://portswigger.net/research/bypassing-character-blocklists-with-unicode-overflows
-4. Non-existant/malformed (multi-byte) characters like they use in CVE-2024-12356 and describe in 'Attacking APIs using JSON Injection'. For instance in the CVE, you can smuggle in any character you like, as long as you prefix it with a byte that would fool the parse into thinking that the input is a multi-byte character in UTF-8. This 'multi-byte' character does not have to be valid in this case. The application takes the naive approach of assuming "hey, it's a multi-byte character, it can't be a quote! so it's fine to do a byte-by-byte copy without escaping anything!
+4. Non-existant/malformed (multi-byte) characters like they use in CVE-2024-12356 and describe in 'Attacking APIs using JSON Injection'[^6]. For instance in the CVE, you can smuggle in any character you like, as long as you prefix it with a byte that would fool the parse into thinking that the input is a multi-byte character in UTF-8. This 'multi-byte' character does not have to be valid in this case. The application takes the naive approach of assuming "hey, it's a multi-byte character, it can't be a quote! so it's fine to do a byte-by-byte copy without escaping anything!
 6. using UTF-16 and the like?
 7. modifying the `Content-Type` header to use a different charset (e.g. `ibm500`)[^1]; also check out [[Breaking Down Multipart Parsers_ File upload validation bypass.pdf|this]] - more likely when filter is implemented as a separate software component
 8. for CLI (and path traversal?) injections using wildcards, like `/???/??t /???/??ss??` -> `/bin/cat /etc/passwd`
@@ -47,5 +47,7 @@
 [^4]: For instance, PHP’s `fopen()` might look like a candidate for Unicode smuggling. PHP string literals support the `\u{hhhh}` syntax (in addition to `\xhh`), but PHP itself is implemented in C. In C, however, the unicode escape follows the `\uhhhh` syntax, and these escapes are only meaningful in wide-character contexts (also see [this](https://en.wikipedia.org/wiki/Escape_sequences_in_C#Universal_character_names)), not in normal `char *` strings. Unless the developer explicitly decodes the input through something like `json_decode()` (because `\uhhhh` is a valid escape sequence in JSON), a payload such as `filename=shell.ph\u0070` is passed as a literal string `"shell.ph\u0070"` directly into `fopen()`. Moreover, `fopen()` takes a `char *` and simply forwards raw bytes to the filesystem without additional Unicode escape processing or normalization (see [this](https://github.com/php/php-src/blob/master/ext/standard/file.c#L724)).
 
 [^5]: From https://swisskyrepo.github.io/PayloadsAllTheThings/Directory%20Traversal/#overlong-utf-8-unicode-encoding
+
+[^6]: Since RFC 3629 (November 2003), the high and low surrogates used by UTF-16 (U+D800 through U+DFFF) are not legal Unicode values, and their UTF-8 encodings must be treated as an invalid byte sequence. But are they always? There could be differences in the parsing.
 
 [^6]: As seen here https://swisskyrepo.github.io/PayloadsAllTheThings/Directory%20Traversal/#unicode-encoding
