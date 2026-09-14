@@ -1,12 +1,3 @@
-https://portswigger.net/research/pre-auth-rce-in-forgerock-openam-cve-2021-35464 
-> As my intention was to find truly impactful vulnerabilities rather than just "something", I decided to focus on the systems that are either open source or available to download and decompile.
-
-https://j0vsec.com/post/cve-2021-43798/
-
-https://pentesterlab.com/blog/how-to-start-reviewing-code
-
----
-
 # INSECURE DESERIALIZATION
 
 - You provide the serialized data/string, app deserializes it
