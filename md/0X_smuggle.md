@@ -1,19 +1,15 @@
->[!note]
-> First, <u>focus on the sink</u>. Would your bypass/alternate syntax be interpreted as the payload you are trying to smuggle in?
-> 
-> If so, then move on to the filter function to see if you can smuggle your bypass through it.
-
 ## Inconsistencies in handling alternate syntax - filter vs sink [^4]
-In handling both 'normal' and 'special' chars
 1. encoding (parts of) the string
 	-  URL
 		-  double URL encoding		
-		-  maybe overlong URL? [^3] 
-			- |Character|Encoded[^5]|
-		  |---|---|
-		  |`.`|`%c0%2e`, `%e0%40%ae`, `%c0%ae`|
-		  |`/`|`%c0%af`, `%e0%80%af`, `%c0%2f`|
-		  |`\`|`%c0%5c`, `%c0%80%5c`|
+		-  maybe overlong URL? [^3], for example:
+
+|Character|Encoded[^5]|
+|---|---|
+|`.`|`%c0%2e`, `%e0%40%ae`, `%c0%ae`|
+|`/`|`%c0%af`, `%e0%80%af`, `%c0%2f`|
+|`\`|`%c0%5c`, `%c0%80%5c`|
+
 2. ascii / unicode escape syntax [^2] 
 > [!note]
 > When you send data as a JSON HTTP request body, the JSON parser will process the escape sequences according to JSON specification before PHP (or whatever else) ever sees the data.
@@ -31,11 +27,10 @@ In handling both 'normal' and 'special' chars
 	- apparently also `%u<unicode codepoint>` [^6]
 	
 2. unicode normalization (including emojis?)
-3. overlong unicode -- https://kevinboone.me/overlong.html
-4. unicode trunc / overflow -- https://portswigger.net/research/bypassing-character-blocklists-with-unicode-overflows
-5. using UTF-16 and the like?
-6. modifying the `Content-Type` header to use a different charset (e.g. `ibm500`)[^1]; also check out [[Breaking Down Multipart Parsers_ File upload validation bypass.pdf|this]] - more likely when filter is implemented as a separate software component
-7. for CLI (and path traversal?) injections using wildcards, like `/???/??t /???/??ss??` -> `/bin/cat /etc/passwd`
+3. unicode trunc / overflow -- https://portswigger.net/research/bypassing-character-blocklists-with-unicode-overflows
+4. using UTF-16 and the like?
+5. modifying the `Content-Type` header to use a different charset (e.g. `ibm500`)[^1]; also check out [[Breaking Down Multipart Parsers_ File upload validation bypass.pdf|this]] - more likely when filter is implemented as a separate software component
+6. for CLI (and path traversal?) injections using wildcards, like `/???/??t /???/??ss??` -> `/bin/cat /etc/passwd`
 
 ## Fooling the (regex based) filter
 1. control characters before the naughty special chars to prematurely end parsing
@@ -49,6 +44,7 @@ In handling both 'normal' and 'special' chars
 9. using comments to break up the string (like `/?id=1+un/**/ion+sel/**/ect+1,2,3--`)
 10. for CLI injections using non-existant env variables, like `si${foo}imu` -> `siimu`
 11. if possible, using concatenation to bypass filters that look for keywords
+12. abusing regex that is not anchored with `^` and `$`
 
 ## Inconsistent use of filters in functions
 1. different HTTP method
