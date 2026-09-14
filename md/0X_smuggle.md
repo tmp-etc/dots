@@ -35,9 +35,7 @@
 10. for CLI injections using non-existant env variables, like `si${foo}imu` -> `siimu`
 11. if possible, using concatenation to bypass filters that look for keywords
 12. abusing regex that is not anchored with `^` and `$`
-
-## Inconsistent use of filters in functions
-1. different HTTP method
+13. different filtering based on the origin of data, i.e if data can flow to the sink via different routes
 
 [^1]: A WAF that is not configured to detect malicious payloads in different encodings may not recognize the request as malicious. The charset encoding can be done in Python `urllib.parse.quote_plus(s.encode("IBM037"))` or using <u>Hackvertor</u>!
 
