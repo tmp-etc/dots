@@ -1,15 +1,5 @@
 ## Inconsistencies in handling alternate syntax - filter vs sink [^4]
-1. encoding (parts of) the string
-	-  URL
-		-  double URL encoding		
-		-  maybe overlong URL? [^3], for example:
-
-|Character|Encoded[^5]|
-|---|---|
-|`.`|`%c0%2e`, `%e0%40%ae`, `%c0%ae`|
-|`/`|`%c0%af`, `%e0%80%af`, `%c0%2f`|
-|`\`|`%c0%5c`, `%c0%80%5c`|
-
+1. encoding (parts of) the input, i.e percent encoding etc; also using double and/or overlong encoding
 2. ascii / unicode escape syntax [^2] 
 > [!note]
 > When you send data as a JSON HTTP request body, the JSON parser will process the escape sequences according to JSON specification before PHP (or whatever else) ever sees the data.
