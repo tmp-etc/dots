@@ -5,7 +5,7 @@
 - CHALLENGE ASSUMPTIONS[^1] AND CLAIMS! GO BEYOND THE USER MANUAL!
 - CHALLENGE THE *STATUS QUO* AND RULES! AND THE AUTHORITY ENFORCING THESE!
 - BE COMFORTABLE WITH HAVING LIMITED INFORMATION! LIMITATIONS FORCE CREATIVITY!
-- PAY ATTENTION TO INCONSISTENCIES AND SECURITY MEASURES!
+- PAY ATTENTION TO INCONSISTENCIES[^2], INTEGRATIONS AND SECURITY MEASURES[^3]!
 
 ---
 
@@ -68,3 +68,5 @@ Check if the file is returned to you in some shape or form.
 TBA, prolly only if you can hit some internal endpoint that enabled code exec etc...
 
 [^1]: never assume that 'this would never happen'
+[^2]: if something feels 'legacy' or done in a different manner than rest of the software
+[^3]: especially if they feel 'bolted on', i.e shit was not planned, architected nor implemented with security in mind
