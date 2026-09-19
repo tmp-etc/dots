@@ -1,12 +1,14 @@
+# INFOSEC MISCHIEF!
+
 - GET UNAUTHORIZED ACCESS!
 - CHALLENGE ASSUMPTIONS AND CLAIMS! GO BEYOND THE USER MANUAL!
-- CHALLENGE THE *STATUS QUO* AND RULES!
+- CHALLENGE THE *STATUS QUO* AND RULES! AND THE AUTHORITY ENFORCING THESE!
 - BE COMFORTABLE WITH HAVING LIMITED INFORMATION! LIMITATIONS FORCE CREATIVITY!
 - PAY ATTENTION TO INCONSISTENCIES AND SECURITY MEASURES!
 
 ---
 
-# INSECURE DESERIALIZATION
+## INSECURE DESERIALIZATION
 
 - You provide the serialized data/string, app deserializes it
 - Your input end in some sort of custom serialization implementations where the serialized value is created through concatenation (see CVE-2025-49113)
@@ -16,7 +18,7 @@ If the app limits classes it is willing to deserialize or is deserializing an it
 - Check if the class (or any allowed classes) have known-exploitable magic methods, i.e a property (that you control) is used 'dangerously' inside the magic method, like `$this->$foo->something()` or `something_dangerous($this->$foo)` ... sounds stupid but hey
 
 
-# ARBITRARY FILE WRITE / FILE UPLOAD
+## ARBITRARY FILE WRITE / FILE UPLOAD
 
 - The file gets turned into a file in underlying filesystem (I guess cloud storage like buckets handle this differently)
 - You control (part of) the filepath and the file content
@@ -27,7 +29,7 @@ This could range from classic webshells to messing with session data like CVE-20
 
 Could also write bytecode to an open file descriptor file or something
 
-# SSTI
+## SSTI
 
 Your input ends up
 - in a logical (or logicful?) template engine, such as Mustache
@@ -35,32 +37,32 @@ Your input ends up
 - in an in-template func that's RCE-ish
 - as the whole template to be templated (lol), either via string or file upload
 
-# REMOTE FILE INCLUSION
+## REMOTE FILE INCLUSION
 Like `import`, `require` in PHP. Basically can you make the app take your code and include it in theirs.
 
-# SUPPLY CHAIN / CICD ATTACKS
+## SUPPLY CHAIN / CICD ATTACKS
 
 Lore ipsum
 ...
 ...
 
-# DATA EVALUATED AS CODE
+## DATA EVALUATED AS CODE
 
 Be it calling executables from the underlying OS or pushing a string to a code engine to be evaluated as code.
 
 Keep in mind that you may not be able to manipulate the arguments of the executable, but you still could have some other input opportunities (like commands to a file that the executable will parse and execute, see CVE-2025-60787).
 
-# AUTHN/Z BYPASSES
+## AUTHN/Z BYPASSES
 
 Especially when there are 'legit' functionalities that enable code execution, uploading webshells etc.
 
-# ARBITRARY DATA READ
+## ARBITRARY DATA READ
 
 Be it reading files or from a database etc etc.
 
 Check if the file is returned to you in some shape or form.
 
-# SSRF
+## SSRF
 
 TBA, prolly only if you can hit some internal endpoint that enabled code exec etc...
 
