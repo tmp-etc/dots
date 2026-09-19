@@ -1,3 +1,7 @@
+GET UNAUTHORIZED ACCESS!
+CHALLENGE THE THINGS THEY CLAIM!
+---
+
 # INSECURE DESERIALIZATION
 
 - You provide the serialized data/string, app deserializes it
