@@ -1,0 +1,3 @@
+WPA2 builds its key from the password plus values sent openly over the air, so anyone who records a handshake can test password guesses offline until one matches. WPA3 (SAE) mixes the password with two random secrets that never leave the devices, so a recording is useless for guessing and the only way to try a password is to connect live, one guess at a time.
+
+Guesses have to be made live against the access point, so it's far slower than offline cracking, but a password near the top of common-password lists could still fall after enough attempts. This is especially true if the access point doesn't rate-limit failed tries. A strong password is still what actually keeps you safe.
