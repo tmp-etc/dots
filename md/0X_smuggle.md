@@ -1,4 +1,4 @@
-## Inconsistencies in handling alternate syntax - filter vs sink [^4]
+## Inconsistencies in handling the input - filter vs sink [^4]
 1. encoding (parts of) the input, i.e percent encoding etc; also using double and/or overlong encoding
 2. ascii / unicode escape syntax [^2] 
 
