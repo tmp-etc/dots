@@ -31,7 +31,7 @@ If the app limits classes it is willing to deserialize or is deserializing an it
 
 - The file gets turned into a file in underlying filesystem (I guess cloud storage like buckets handle this differently)
 - You control (part of) the filepath and the file content
-- You are able to bypass sanitization of the filepath and content (interesting to delve on XBM images)
+- You are able to bypass sanitization of the filepath and content (via some polyglots?) [^4] [^5] 
 - You find a path from which this file gets handled like an executable
 
 This could range from classic webshells to messing with session data like CVE-2026-41940 where sessions are stored in plaintext file as key-value pairs and appending newline characters to a value enabled to insert new keys
@@ -78,3 +78,5 @@ TBA, prolly only if you can hit some internal endpoint that enabled code exec et
 [^1]: never assume that 'this would never happen'
 [^2]: if something feels 'legacy' or done in a different manner than rest of the software
 [^3]: especially if they feel 'bolted on', i.e shit was not planned, architected nor implemented with security in mind
+[^4]: apparently something like `.php` is a legit filename, see https://exe2py.neocities.org/writeups/2025_x3ctf/kittyconvert/; i.e in-case the regex filter is something like this: `preg_replace("/^(.+)\\..+$/", "$1.ico", basename($_FILES["file"]["name"]));`
+[^5]: interesting to delve on XBM images?
