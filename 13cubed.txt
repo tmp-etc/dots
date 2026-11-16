@@ -1,0 +1,12 @@
+architecting the hunt
+---------------------
+structured hunt -> methodical
+unstructured hunt -> free form, curiosity driven; mostly triggered by something, like an alert, a cve.
+
+situational/hypothesis driven - something triggered (i.e something occured in the env) and you set out to understand how it happened. you set hypothesis and then use data to prove/disprove it.
+intelligence driven - you get info that some threat actor is attacking your peers in the industry, you hunt if you have been affected
+analytics driven - proactive
+
+using common frameworks - like focus your hunt on the 'persistence' section of mitre att&ck
+
+understand the pathways to your company's crown jewels

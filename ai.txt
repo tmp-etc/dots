@@ -1,0 +1,49 @@
+X represents the input features (independent variables or data you use to make a prediction), and y represents the target label (the dependent variable or output you want to predict).
+
+**fit is where the model learns from data. You give it examples (input features) along with the known answers (labels or targets), and the algorithm adjusts its internal parameters to capture the patterns connecting inputs to outputs.
+
+Think of it like studying for an exam: you go through practice problems with the answers available, and gradually you internalize the underlying rules.
+
+**predict is where you use the trained model on new, unseen data. You give it only the inputs, and it produces its best guess for the outputs based on what it learned during fit
+
+Back to the exam analogy: this is sitting the actual test, where you apply what you studied to questions you haven't seen before.
+
+[ + + + ]
+
+supervised - labeled examples
+unsupervised - not labeled items, up to the model to work out the patterns; grouping by similarity of features
+
+labeling data is costly, unsupervised grouping by features/behaviour is cheaper
+
+regression models - modelling dependencies between inputs and outputs?
+
+a model is: a deliberately simplified version of reality that's useful for a specific purpose.
+
+So "a model is a grid of learned numbers" is a solid mental image. Some models capture probabilities, but many capture relationship strength rather than probability.
+
+sklearn's train_test_split splits your dataset into separate training and testing subsets, so you can train a model on one portion and evaluate it on data it hasn't seen.
+
+
+classification vs regression
+----------------------------
+
+** Classification in machine learning categorizes data into predefined groups based on shared characteristics. -- i.e they are given a 'class'
+
+** Regression is a machine learning technique that predicts numeric values along a continuum
+
+Profit, sales, mortgage rates, house values, square footage, temperature, or distance can be predicted using Regression techniques. For example, a regression model can be used to predict the value of a house based on location, number of rooms, lot size, and other factors.
+
+KNN
+------
+given a data point you calculate its distance from all other data points in the data set
+
+for regression - get the average of the values
+for classification - get the label with majority vote. so for example if the majority of the closest data points are green, then the new data point is most likely green too
+
+The algorithm stores the entire dataset and classifies each new data point based on the existing data points that are similar to it (i.e distance between data points). KNN makes predictions based on the training or “known” data only.
+
+In other words, “k” determines the number of neighbors the algorithm looks at when assigning a value to any new observation.
+
+transformer models
+--------------------
+Transformers aren't magic—they build text step by step by asking: 		"What is the most probable next word that will follow this input?"
